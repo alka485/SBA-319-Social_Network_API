@@ -1,4 +1,4 @@
-const connection = require('../config/connection.mjs');
+const connection = require('../config/connection.js');
 const {User, Thought} = require('../models');
 const {getRandomName, email, getRandomThought } = require('./data');
 
