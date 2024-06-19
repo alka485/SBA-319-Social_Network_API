@@ -75,7 +75,7 @@ const username =[
     if(int === 1) {
         return getRandomArrItem(possibleReactions);
     }
-    let result = [];
+    let results = [];
     for(let i = 0; i < int; i++) {
         results.push({
             reactionBody : getRandomArrItem(possibleReactions),
