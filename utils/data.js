@@ -85,5 +85,7 @@ const username =[
     return results;
  };
 
+ // Export the functions for use in seed.js
+
  module.exports = {getRandomName, email, getRandomThought,getRandomReaction};
  
