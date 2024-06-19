@@ -4,8 +4,10 @@ const {getRandomName, email, getRandomThought } = require('./data');
 
 connection.on('error' , (err) => err);
 
+// Creates a connection to mongodb
 connection.once('open', async () => {
     console.log('connected');
+    // Delete the entries in the collection
     await User.deleteMany({});
     await Thought.deleteMany({});
 
@@ -14,6 +16,8 @@ connection.once('open', async () => {
     const emails = email;
     console.log(emails);
 
+    
+  // Wait for the thoughts to be inserted into the database
     await Thought.collection.insertMany(thought);
     var thoughts = await Thought.find();
 
@@ -27,8 +31,11 @@ connection.once('open', async () => {
         })
 
     }
+    
+  // Wait for the users to be inserted into the database
     await User.collection.insertMany(users);
-
+  
+    // Log out a pretty table for users and thoughts
     console.table(users);
     console.table(thought);
     console.info('Seeding complete!');
