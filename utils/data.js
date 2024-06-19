@@ -68,4 +68,20 @@ const username =[
     }
     return results;
  }
+
+ //Get a Random Reaction
+
+ const getRandomReaction = (int) => {
+    if(int === 1) {
+        return getRandomArrItem(possibleReactions);
+    }
+    let result = [];
+    for(let i = 0; i < int; i++) {
+        results.push({
+            reactionBody : getRandomArrItem(possibleReactions),
+            username: getRandomName(),
+        });
+    }
+    return results;
+ };
  
