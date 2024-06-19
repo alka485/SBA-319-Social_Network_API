@@ -84,4 +84,6 @@ const username =[
     }
     return results;
  };
+
+ module.exports = {getRandomName, email, getRandomThought,getRandomReaction};
  
