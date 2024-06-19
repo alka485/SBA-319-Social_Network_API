@@ -28,4 +28,9 @@ connection.once('open', async () => {
 
     }
     await User.collection.insertMany(users);
+
+    console.table(users);
+    console.table(thought);
+    console.info('Seeding complete!');
+    process.exit(0);
 })
