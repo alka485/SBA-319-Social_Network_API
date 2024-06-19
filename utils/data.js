@@ -34,6 +34,24 @@ const username =[
 
  const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
+ //Get Random Name
+
+ const getRandomName = (int) => {
+    if(int === 1){
+        return getRandomArrItem(username);
+    }
+    let results = [];
+    for(let i = 0; i < int; i++) {
+        results.push({
+            userId:getRandomArrItem(username),
+            email:getRandomArrItem(email),
+            username:getRandomArrItem(username),
+            thoughts:[...getRandomThought(5),]
+        });
+    }
+    return results;
+ }
+
  // Get a random thought
 
  const getRandomThought = (int) => {
