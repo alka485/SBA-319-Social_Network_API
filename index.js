@@ -1,7 +1,7 @@
 // Import express package
 const express = require('express');
 const db = require('./config/connection');
-const routes = require('./routes');
+const routes = require('./routes')
 
 const PORT = 4000;
 // Initialize our app variable by setting it to the value of express()
