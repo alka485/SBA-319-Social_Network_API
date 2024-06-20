@@ -8,5 +8,59 @@ module.exports = {
     },
     getSingleUser(req,res) {
         User.findOne({_id:req.params.userId})
-    }
+        .select('-_v')
+        .then((user) => 
+            !user
+             ? res.status(404).json({message: 'No user with that ID'})
+             : res.json(user)
+        )
+        .catch((err) => res.status(500).json(err));
+    },
+    // create a new user
+    createUser(req, res) {
+        User.create(req.body)
+        .then((dbUserData) => res.json(dbUserData))
+        .catch((err) => res.status(500).json(err));
+    },
+
+    //Delete User
+
+    deleteUser(req,res) {
+        User.findOneAndRemove({-id: req.params.userId})
+        .then((user) => 
+        !user
+         ?res.status(404).json({message: 'No user with this id!'})
+         :User.findOneAndUpdate(
+            { User: req.params.userId },
+            { $pull: {users: req.params.userId} },
+            {new: true }
+         )
+        )
+        .then ((user) => 
+        !user
+         ? res
+             .status(404)
+             .json({message: 'User created without userid!'})
+          : res.json({message: 'User successfully deleted!'})   
+    )
+    .catch((err) => res.status(500).json(err))
+    },
+
+    //Update User
+  updateUser(req,res){
+    User.findOneAndUpdate(
+        {_id:req.params.userId},
+        { $set:req.body },
+        { runValidators:true, new: true}
+    )
+    .then((user) =>
+    !user
+      ? res.status(404).json({ message: 'No user with this id!' })
+      : res.json(user)
+    )
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+},
 }
