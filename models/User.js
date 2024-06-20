@@ -25,10 +25,15 @@ const userSchema  = new Schema (
                 type: Schema.Types.ObjectId,
                 ref: 'User',
             },
-        ],
-
-        
-    }
+        ],    
+    },
+        {
+            toJSON: {
+                virtuals: true,
+                getters: true,
+            },
+       
+        }     // id:false,
 )
 
 const User = model('user' , userSchema);
