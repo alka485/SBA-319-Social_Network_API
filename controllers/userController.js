@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const router = require('express').Router();
+const{body,validationResult} = require('express-validator')
 
 module.exports = {
     getUsers(req, res) {
@@ -16,12 +18,16 @@ module.exports = {
         )
         .catch((err) => res.status(500).json(err));
     },
-    // create a new user
+    //create a new user
     createUser(req, res) {
         User.create(req.body)
         .then((dbUserData) => res.json(dbUserData))
         .catch((err) => res.status(500).json(err));
     },
+
+   
+
+
 
     //Delete User
 
